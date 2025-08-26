@@ -531,16 +531,15 @@ const Dashboard = () => {
               Discover compatible profiles based on your preferences
             </p>
           </div>
-          <div className="flex gap-2">
+         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <Button
               variant="outline"
               onClick={() => {
                 setShowSent(true);
                 setShowReceived(false);
               }}
-              className={`text-yellow-700 border-yellow-400 hover:bg-yellow-100 ${
-                showSent && !showReceived ? "bg-yellow-100" : ""
-              }`}
+              className={`w-full sm:w-auto min-h-[44px] text-sm sm:text-base border-yellow-400 text-yellow-700 hover:bg-yellow-100 px-4 py-2 flex items-center justify-center ${showSent && !showReceived ? "bg-yellow-100" : ""
+                }`}
             >
               <Inbox size={16} className="mr-2" />
               Sent Interests
@@ -551,9 +550,8 @@ const Dashboard = () => {
                 setShowReceived(true);
                 setShowSent(false);
               }}
-              className={`text-yellow-700 border-yellow-400 hover:bg-yellow-100 ${
-                showReceived && !showSent ? "bg-yellow-100" : ""
-              }`}
+              className={`w-full sm:w-auto min-h-[44px] text-sm sm:text-base border-yellow-400 text-yellow-700 hover:bg-yellow-100 px-4 py-2 flex items-center justify-center ${showReceived && !showSent ? "bg-yellow-100" : ""
+                }`}
             >
               <Users size={16} className="mr-2" />
               Received Interests
