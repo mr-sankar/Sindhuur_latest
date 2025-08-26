@@ -220,7 +220,7 @@ const Notifications = () => {
           )}
         </div>
 
-        <div className="space-y-4">
+       <div className="space-y-4">
           {notifications.map((notification) => {
             const IconComponent = iconMap[notification.type] || Bell;
             return (
@@ -229,79 +229,79 @@ const Notifications = () => {
                 className={`border-yellow-200 hover:shadow-md transition-shadow ${!notification.isRead ? "bg-yellow-50" : "bg-white"
                   }`}
               >
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`p-2 rounded-full bg-white ${getNotificationColor(
-                        notification.type,
-                        notification.read
-                      )}`}
-                    >
-                      <IconComponent size={20} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-gray-800">
-                              {notification.toUserName}{" "}
-                            </h3>
-                            <p>showed interest in you</p>
-                            {!notification.isRead && (
-                              <Badge className="bg-yellow-400 text-yellow-900 hover:bg-yellow-500">
-                                New
-                              </Badge>
-                            )}
-                          </div>
-                          <p className="text-gray-600 mb-2">
-                            {notification.message}
-                          </p>
-                          <p className="text-sm text-gray-500">
-                            {new Date(notification.createdAt).toLocaleString()}
-                          </p>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => handleViewProfile(notification.fromProfileId)}
-                            className="mt-2 border-yellow-300 text-yellow-600 hover:bg-yellow-50"
-                          >
-                            View Profile
-                          </Button>
-                        </div>
-                        <div className="flex gap-2">
+                <CardContent className="p-4 sm:p-6">
+                <div className="flex items-start gap-4">
+                  <div
+                    className={`p-2 rounded-full bg-white ${getNotificationColor(
+                      notification.type,
+                      notification.read
+                    )}`}
+                  >
+                    <IconComponent size={20} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <h3 className="font-semibold text-gray-800">
+                            {notification.toUserName}
+                          </h3>
+                          <p>showed interest in you</p>
                           {!notification.isRead && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() =>
-                                markAsRead(
-                                  notification.toProfileId,
-                                  notification._id
-                                )
-                              }
-                              className="text-yellow-600 hover:bg-yellow-100"
-                            >
-                              <Check size={16} />
-                            </Button>
+                            <Badge className="bg-yellow-400 text-yellow-900 hover:bg-yellow-500">
+                              New
+                            </Badge>
                           )}
+                        </div>
+                        <p className="text-gray-600 mb-2">
+                          {notification.message}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {new Date(notification.createdAt).toLocaleString()}
+                        </p>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() =>
+                            handleViewProfile(notification.fromProfileId)
+                          }
+                          className="mt-2 border-yellow-300 text-yellow-600 hover:bg-yellow-50 px-4 py-2 min-h-[44px] text-sm sm:text-base"
+                        >
+                          View Profile
+                        </Button>
+                      </div>
+                      {/* Adjusted button container for responsiveness */}
+                      <div className="flex sm:flex-col gap-2 sm:gap-3">
+                        {!notification.isRead && (
                           <Button
                             size="sm"
                             variant="ghost"
                             onClick={() =>
-                              deleteNotification(
-                                notification.toProfileId,
-                                notification._id
-                              )
+                              markAsRead(notification.toProfileId, notification._id)
                             }
-                            className="text-red-500 hover:bg-red-50"
+                            className="text-yellow-600 hover:bg-yellow-100 min-w-[44px] min-h-[44px] flex items-center justify-center"
                           >
-                            <Trash2 size={16} />
+                            <Check size={20} />
                           </Button>
-                        </div>
+                        )}
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() =>
+                            deleteNotification(
+                              notification.toProfileId,
+                              notification._id
+                            )
+                          }
+                          className="text-red-500 hover:bg-red-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                        >
+                          <Trash2 size={20} />
+                        </Button>
                       </div>
                     </div>
                   </div>
-                </CardContent>
+                </div>
+              </CardContent>
               </Card>
             );
           })}
@@ -309,12 +309,12 @@ const Notifications = () => {
 
         {notifications.length === 0 && (
           <Card className="border-yellow-200">
-            <CardContent className="p-12 text-center">
+            <CardContent className="p-8 sm:p-12 text-center">
               <Bell size={48} className="mx-auto text-gray-400 mb-4" />
               <h3 className="text-lg font-semibold text-gray-700 mb-2">
                 No notifications yet
               </h3>
-              <p className="text-gray-500">
+              <p className="text-gray-500 text-sm sm:text-base">
                 When you receive interests, messages, or matches, they'll appear
                 here.
               </p>
